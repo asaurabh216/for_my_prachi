@@ -1,0 +1,953 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>For Prachi ❤️ | A Diwali Surprise</title>
+
+<style>
+:root {
+  --gold: #ffd77c;
+  --cream: #fff0d8;
+  --pink: #ff9cb5;
+  --plum: #32143f;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background: #1c102d;
+  color: var(--cream);
+  font-family: Georgia, serif;
+  overflow: hidden;
+}
+
+#sky {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.topbar {
+  position: fixed;
+  z-index: 20;
+  top: 0;
+  left: 0;
+  right: 0;
+  padding: 17px 6%;
+  display: flex;
+  justify-content: space-between;
+  background: linear-gradient(#1c102ddd, transparent);
+  color: var(--gold);
+  font: 700 12px Arial;
+  letter-spacing: 2px;
+}
+
+.progress {
+  position: fixed;
+  z-index: 20;
+  top: 52px;
+  left: 6%;
+  right: 6%;
+  height: 3px;
+  background: #ffffff25;
+}
+
+.progress i {
+  display: block;
+  height: 100%;
+  width: 0;
+  background: var(--gold);
+  transition: width .7s ease;
+}
+
+#app {
+  height: 100svh;
+  min-height: 600px;
+  position: relative;
+  z-index: 1;
+}
+
+.page {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 100px 7% 100px;
+
+  opacity: 0;
+  visibility: hidden;
+  transform: translateX(70px) scale(.97);
+
+  transition:
+    opacity .65s ease,
+    transform .8s cubic-bezier(.2,.75,.2,1),
+    visibility .8s;
+}
+
+.page.active {
+  opacity: 1;
+  visibility: visible;
+  transform: translateX(0) scale(1);
+}
+
+.page.exit {
+  opacity: 0;
+  transform: translateX(-70px) scale(.97);
+}
+
+.eyebrow {
+  color: var(--gold);
+  font: 700 11px Arial;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+}
+
+h1 {
+  font-size: clamp(3.3rem, 10vw, 7.5rem);
+  line-height: .95;
+  margin: 22px 0;
+  color: #fff0d8;
+  text-shadow: 0 6px 0 #a84655, 0 15px 35px #170a28;
+}
+
+h1 em, h2 em {
+  color: var(--gold);
+}
+
+h2 {
+  font-size: clamp(2.4rem, 6vw, 4.8rem);
+  line-height: 1.05;
+  margin: 20px 0;
+}
+
+.lead {
+  max-width: 700px;
+  color: #ffe7d4;
+  font-size: 1.15rem;
+  line-height: 1.9;
+}
+
+.note {
+  width: min(700px, 100%);
+  padding: 35px;
+  margin: 20px auto;
+  border-radius: 23px;
+  background: #fff0d9;
+  color: #46213f;
+  font-size: clamp(1rem, 2vw, 1.2rem);
+  line-height: 1.9;
+  box-shadow: 0 20px 55px #10091c80;
+  animation: noteIn .8s ease both;
+}
+
+.note strong {
+  color: #b4495c;
+}
+
+@keyframes noteIn {
+  from {
+    opacity: 0;
+    transform: translateY(25px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Buttons */
+
+.controls {
+  position: fixed;
+  bottom: 25px;
+  left: 0;
+  right: 0;
+  z-index: 30;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 18px;
+}
+
+.btn {
+  padding: 14px 24px;
+  border: 1px solid var(--gold);
+  border-radius: 50px;
+  background: var(--gold);
+  color: #48223e;
+  font-weight: bold;
+  cursor: pointer;
+  transition: .3s;
+}
+
+.btn:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 25px #ffcc6870;
+}
+
+.secondary {
+  background: transparent;
+  color: white;
+}
+
+.counter {
+  font: 12px Arial;
+  color: var(--gold);
+}
+
+/* Lanterns */
+
+.lantern {
+  position: absolute;
+  top: 75px;
+  width: 42px;
+  height: 60px;
+  border-radius: 45%;
+  background: linear-gradient(90deg,#ef653e,#ffd078,#e94f52);
+  box-shadow: 0 0 30px #ffbf57;
+  animation: swing 3s ease-in-out infinite alternate;
+}
+
+.lantern.left { left: 12%; }
+.lantern.right { right: 12%; top: 110px; }
+
+@keyframes swing {
+  to { transform: rotate(10deg); }
+}
+
+/* Diwali street */
+
+.street {
+  width: min(780px, 100%);
+  height: 190px;
+  margin: 30px auto;
+  position: relative;
+  border: 3px solid #ffcf83;
+  background:
+    linear-gradient(90deg,
+      #e87c4f 0 16%,
+      #f9ba83 16% 19%,
+      #51304f 19% 81%,
+      #f9ba83 81% 84%,
+      #e87c4f 84%);
+  box-shadow: inset 0 0 45px #2a1538;
+}
+
+.street:before {
+  content: "";
+  position: absolute;
+  inset: 0 19%;
+  background-color: #b98579;
+  background-image:
+    repeating-linear-gradient(0deg,#7e5c68 0 2px,transparent 2px 30px),
+    repeating-linear-gradient(90deg,#7e5c68 0 2px,transparent 2px 55px);
+}
+
+.window {
+  position: absolute;
+  top: 30px;
+  width: 33px;
+  height: 50px;
+  background: #ffdf7e;
+  border: 4px solid #a94d4c;
+  box-shadow: 0 0 22px #ffcf66;
+}
+
+.w1 { left: 5%; }
+.w2 { left: 12%; }
+.w3 { right: 5%; }
+.w4 { right: 12%; }
+
+/* Diyas */
+
+.diya {
+  position: absolute;
+  bottom: 10px;
+  width: 29px;
+  height: 15px;
+  border-radius: 0 0 20px 20px;
+  background: #ff9b39;
+  box-shadow: 0 0 18px #ffb94e;
+}
+
+.diya:before {
+  content: "";
+  position: absolute;
+  left: 10px;
+  top: -13px;
+  width: 9px;
+  height: 14px;
+  border-radius: 100% 0 100% 0;
+  transform: rotate(45deg);
+  background: #fff4a8;
+  box-shadow: 0 0 15px #fff3a3;
+  animation: flicker .5s infinite alternate;
+}
+
+@keyframes flicker {
+  to { transform: rotate(55deg) scale(.8); }
+}
+
+.d1 { left: 8%; }
+.d2 { left: 28%; }
+.d3 { right: 28%; }
+.d4 { right: 8%; }
+
+/* Characters */
+
+.people {
+  display: flex;
+  gap: 40px;
+  justify-content: center;
+  margin-top: 15px;
+}
+
+.person {
+  font: bold 11px Arial;
+  color: #ffe8c9;
+  letter-spacing: 1px;
+}
+
+.avatar {
+  height: 85px;
+  width: 60px;
+  position: relative;
+  margin: auto auto 8px;
+  animation: bounce 2s infinite alternate;
+}
+
+@keyframes bounce {
+  to { transform: translateY(-7px); }
+}
+
+.head {
+  position: absolute;
+  top: 0;
+  left: 15px;
+  width: 30px;
+  height: 32px;
+  border-radius: 50%;
+  background: #a9694b;
+  border: 2px solid #29172d;
+}
+
+.body {
+  position: absolute;
+  bottom: 0;
+  left: 2px;
+  width: 56px;
+  height: 55px;
+  border-radius: 22px 22px 7px 7px;
+  background: #f39b43;
+  border: 2px solid #29172d;
+}
+
+.prachi .body { background: #ef7292; }
+
+/* Chat cards */
+
+.chatgrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  max-width: 850px;
+  margin: 25px auto;
+}
+
+.chat {
+  background: #fff0d9;
+  color: #4b2645;
+  padding: 22px;
+  text-align: left;
+  line-height: 1.7;
+  border-radius: 20px 20px 20px 5px;
+  animation: noteIn .7s ease both;
+}
+
+.chat:nth-child(even) {
+  background: #ffdfb5;
+  border-radius: 20px 20px 5px 20px;
+}
+
+.chat b {
+  display: block;
+  color: #b44b5b;
+  font: bold 10px Arial;
+  letter-spacing: 2px;
+  margin-bottom: 8px;
+}
+
+/* Final scene */
+
+.final {
+  background: radial-gradient(ellipse at center,#b94e5b,#4a214e 62%,#1c102d);
+}
+
+/* Responsive */
+
+@media(max-width:650px) {
+  .page { padding: 90px 6% 105px; }
+  .chatgrid {
+    grid-template-columns: 1fr;
+    max-height: 55vh;
+    overflow-y: auto;
+  }
+  .chat { padding: 15px; }
+  .note { padding: 23px; }
+  .street { height: 145px; }
+  .topbar { font-size: 10px; }
+}
+</style>
+</head>
+
+<body>
+
+<canvas id="sky"></canvas>
+
+<header class="topbar">
+  <span>✦ SAURABH × PRACHI</span>
+  <span>A LITTLE DIWALI WORLD</span>
+</header>
+
+<div class="progress">
+  <i id="bar"></i>
+</div>
+
+<main id="app">
+
+<!-- PAGE 1 -->
+
+<section class="page active">
+  <div class="lantern left"></div>
+  <div class="lantern right"></div>
+
+  <div class="eyebrow">A tiny surprise made just for you</div>
+
+  <h1>Happy Diwali,<br><em>Prachi!</em></h1>
+
+  <p class="lead">
+    Ek chhoti si Diwali gali… do dost…
+    aur dher saari baatein.
+    Come, I made a little world for us. 🪔
+  </p>
+
+  <button class="btn" onclick="nextPage()">
+    Chalo andar chalte hain ✨
+  </button>
+</section>
+
+<!-- PAGE 2 -->
+
+<section class="page">
+  <div class="eyebrow">01 · Our little Diwali gali</div>
+
+  <h2>Dooriyan bas<br><em>map par hain.</em></h2>
+
+  <p class="lead">
+    Imagine ek colourful si Diwali street,
+    har balcony par lights,
+    har darwaze par rangoli…
+    aur beech mein hum dono, apni hi bakbak mein busy.
+  </p>
+
+  <div class="street">
+    <i class="window w1"></i>
+    <i class="window w2"></i>
+    <i class="window w3"></i>
+    <i class="window w4"></i>
+
+    <i class="diya d1"></i>
+    <i class="diya d2"></i>
+    <i class="diya d3"></i>
+    <i class="diya d4"></i>
+  </div>
+
+  <div class="people">
+    <div class="person">
+      <div class="avatar">
+        <i class="head"></i>
+        <i class="body"></i>
+      </div>
+      SAURABH · UP
+    </div>
+
+    <div class="person prachi">
+      <div class="avatar">
+        <i class="head"></i>
+        <i class="body"></i>
+      </div>
+      PRACHI · PATNA
+    </div>
+  </div>
+</section>
+
+<!-- PAGE 3 -->
+
+<section class="page">
+  <div class="eyebrow">02 · A title I wear proudly</div>
+
+  <h2>Your official<br><em>frustration box.</em></h2>
+
+  <div class="note">
+    I love to be your
+    <strong>frustration box.</strong>
+
+    Tumhari har rant, har random thought,
+    har chhoti-badi baat sunna genuinely
+    meri favourite things mein se hai.
+
+    Keep them coming, ma'am.
+    I am listening. 🧡
+  </div>
+</section>
+
+<!-- PAGE 4 -->
+
+<section class="page">
+  <div class="eyebrow">03 · Things I could listen to forever</div>
+
+  <h2>Your voice. Your stories.<br>All of it.</h2>
+
+  <div class="note">
+    I love hearing you talk — your stories,
+    your chants, your random explanations,
+    literally everything.
+
+    I don't know how to explain it,
+    but even the most ordinary thing sounds
+    interesting when it's coming from you.
+  </div>
+
+  <p class="lead">
+    Some people just make even silence
+    feel comfortable. You're one of them.
+  </p>
+</section>
+
+<!-- PAGE 5 -->
+
+<section class="page">
+  <div class="eyebrow">04 · The video-call chapter</div>
+
+  <h2>That muh bana ke<br>dekhna! 😂</h2>
+
+  <div class="note">
+    Whenever I roast you or tumhari bezatti
+    karta hoon, and you make that face
+    and look at me…
+
+    I swear, I am so fond of that expression.
+
+    I think I could annoy you just to see
+    it again. (Thoda sa only.)
+  </div>
+
+  <p class="lead">
+    Calls ho gayi, video calls bhi ho gayi…
+    ab bas real-life wali chai aur bakbak pending hai.
+  </p>
+</section>
+
+<!-- PAGE 6 -->
+
+<section class="page">
+  <div class="eyebrow">05 · No jokes for this one</div>
+
+  <h2>You deserve a<br><em>safe place.</em></h2>
+
+  <div class="note">
+    I don't know how people can hurt someone
+    as lovely as you.
+
+    But I want you to know this:
+    I will never intentionally make you
+    feel small or unsafe.
+
+    I want you to be able to show up as
+    your full self around me — happy,
+    sad, angry, confused, or just full
+    of unnecessary emergency rants.
+  </div>
+
+  <p class="lead">
+    If you feel you can come to me on
+    your difficult days, honestly…
+    that's enough for me.
+  </p>
+</section>
+
+<!-- PAGE 7 -->
+
+<section class="page">
+  <div class="eyebrow">06 · Something you once said</div>
+
+  <h2>My pleasure,<br>my dear ma'am. 🧡</h2>
+
+  <div class="note">
+    You say I'm one of the nicest people.
+
+    No, my dear ma'am — it's
+    <strong>my pleasure having you in my life.</strong>
+
+    I am proud that I can be someone's
+    comfort place, and even happier
+    that you feel safe around me.
+  </div>
+
+  <p class="lead">
+    Thank you for trusting me with
+    your unfiltered self.
+  </p>
+</section>
+
+<!-- PAGE 8 -->
+
+<section class="page">
+  <div class="eyebrow">07 · A prayer beneath the diyas</div>
+
+  <h2>May life give you<br><em>everything beautiful.</em></h2>
+
+  <div class="note">
+    Dil se pray karta hoon ki tumhe life mein
+    woh sab mile jo tum chahti ho —
+    aur woh achhi cheezein bhi jinke baare
+    mein tumne abhi socha tak nahi.
+
+    Happiness, peace, success, good people,
+    and a thousand reasons to smile.
+
+    You deserve so much goodness, Prachi.
+  </div>
+</section>
+
+<!-- PAGE 9 -->
+
+<section class="page">
+  <div class="eyebrow">08 · One tiny selfish prayer 😂</div>
+
+  <h2>Manifesting a<br>successful Saurabh.</h2>
+
+  <div class="note">
+    Aur haan, mere liye bhi pray karna
+    ki tumhara Saurabh future mein
+    aur successful ho jaye…
+
+    taaki woh tumhe har ghante nahi,
+    <strong>har minute kuch de sake.</strong>
+
+    😂 Thoda selfish ho gaya, I know.
+    Gift department ki request hai,
+    reject mat karna.
+  </div>
+</section>
+
+<!-- PAGE 10 -->
+
+<section class="page">
+  <div class="eyebrow">09 · An extremely serious notice</div>
+
+  <h2>PG ka address<br>bhej dena, ma'am. 😤</h2>
+
+  <div class="note">
+    Address nahi dogi toh tumhare college
+    ke aage aa kar baith jayenge —
+    poora din, poori raat.
+
+    Aur phir mat kehna warning nahi di thi.
+
+    <strong>
+      YEH AAPKO DHAMKI HAI.
+      DHAMKI SAMAJHI AAP? 😂
+    </strong>
+  </div>
+
+  <p class="lead">
+    Bas ab tumse milna reh gaya hai.
+    Jaldi milte hain, okay?
+  </p>
+</section>
+
+<!-- PAGE 11 -->
+
+<section class="page">
+  <div class="eyebrow">10 · One last thing</div>
+
+  <h2>Ab itna apnapan<br>kahaan milta hai?</h2>
+
+  <div class="note">
+    Sirf tumhare saath hota hoon toh
+    kitna bolta hoon, you know that.
+
+    Kisi aur ke saath ab itni friendliness
+    aur apnapan feel nahi hota.
+
+    Aur jab tum baat karti ho,
+    aisa lagta hai jaise tum mere paas hi
+    baith kar sab bata rahi ho.
+  </div>
+
+  <p class="lead">
+    Distance can't really compete with
+    a bond that feels this close.
+  </p>
+</section>
+
+<!-- PAGE 12 -->
+
+<section class="page final">
+  <div class="lantern left"></div>
+  <div class="lantern right"></div>
+
+  <div class="eyebrow">A little Diwali wish, from me to you</div>
+
+  <h2>Keep glowing,<br><em>Prachi.</em> 🪔</h2>
+
+  <p class="lead">
+    Keep laughing, keep ranting,
+    keep making those priceless faces.
+
+    Whenever the world gets too loud,
+    your frustration box is right here.
+  </p>
+
+  <p class="lead" style="margin-top:25px;color:#ffd77c">
+    With warmth, unlimited roasting
+    & lots of affection,<br>
+    <strong>Saurabh · Uttar Pradesh</strong>
+  </p>
+
+  <button class="btn" onclick="fireworkShow()">
+    Ek last phataka! 🎆
+  </button>
+</section>
+
+</main>
+
+<!-- NAVIGATION -->
+
+<div class="controls">
+  <button class="btn secondary" id="prev" onclick="prevPage()">
+    ← Back
+  </button>
+
+  <span class="counter" id="count">1 / 12</span>
+
+  <button class="btn" id="next" onclick="nextPage()">
+    Next scene →
+  </button>
+</div>
+
+<script>
+
+/* PAGE TRANSITIONS */
+
+const pages = [...document.querySelectorAll(".page")];
+
+let current = 0;
+let busy = false;
+
+const bar = document.getElementById("bar");
+const count = document.getElementById("count");
+const prev = document.getElementById("prev");
+const next = document.getElementById("next");
+
+function updateUI() {
+  bar.style.width =
+    ((current + 1) / pages.length * 100) + "%";
+
+  count.textContent =
+    (current + 1) + " / " + pages.length;
+
+  prev.style.visibility =
+    current === 0 ? "hidden" : "visible";
+
+  next.textContent =
+    current === pages.length - 1
+      ? "Start again ↺"
+      : "Next scene →";
+}
+
+function showPage(n) {
+
+  if (busy || n < 0 || n >= pages.length) return;
+
+  if (n === current) return;
+
+  busy = true;
+
+  const oldPage = pages[current];
+  const newPage = pages[n];
+
+  oldPage.classList.add("exit");
+  oldPage.classList.remove("active");
+
+  setTimeout(() => {
+
+    oldPage.classList.remove("exit");
+
+    current = n;
+
+    newPage.classList.add("active");
+
+    updateUI();
+
+    busy = false;
+
+  }, 300);
+}
+
+function nextPage() {
+
+  if (current === pages.length - 1) {
+    showPage(0);
+  } else {
+    showPage(current + 1);
+  }
+
+}
+
+function prevPage() {
+  showPage(current - 1);
+}
+
+/* KEYBOARD NAVIGATION */
+
+document.addEventListener("keydown", e => {
+
+  if (e.key === "ArrowRight") nextPage();
+
+  if (e.key === "ArrowLeft") prevPage();
+
+});
+
+updateUI();
+
+
+/* FIREWORKS ANIMATION */
+
+const canvas = document.getElementById("sky");
+const ctx = canvas.getContext("2d");
+
+let W, H;
+let particles = [];
+
+function resize() {
+
+  W = canvas.width = window.innerWidth;
+  H = canvas.height = window.innerHeight;
+
+}
+
+window.addEventListener("resize", resize);
+
+resize();
+
+function burst(x, y) {
+
+  for (let i = 0; i < 65; i++) {
+
+    const angle = Math.PI * 2 * i / 65;
+
+    const speed = 1 + Math.random() * 4;
+
+    particles.push({
+
+      x,
+      y,
+
+      vx: Math.cos(angle) * speed,
+      vy: Math.sin(angle) * speed,
+
+      life: 65,
+      max: 65,
+
+      radius: 1 + Math.random() * 2,
+
+      color: [
+        "#ffe18a",
+        "#ff906b",
+        "#ffd4a2",
+        "#ff9ec4"
+      ][i % 4]
+
+    });
+
+  }
+
+}
+
+function fireworkShow() {
+
+  burst(W * .5, H * .3);
+
+  setTimeout(() => burst(W * .25, H * .4), 250);
+
+  setTimeout(() => burst(W * .75, H * .35), 500);
+
+}
+
+function animate() {
+
+  ctx.clearRect(0, 0, W, H);
+
+  particles = particles.filter(p => p.life > 0);
+
+  particles.forEach(p => {
+
+    ctx.globalAlpha = p.life / p.max;
+
+    ctx.fillStyle = p.color;
+
+    ctx.beginPath();
+
+    ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
+
+    ctx.fill();
+
+    p.x += p.vx;
+    p.y += p.vy;
+
+    p.vy += .035;
+    p.vx *= .985;
+
+    p.life--;
+
+  });
+
+  ctx.globalAlpha = 1;
+
+  requestAnimationFrame(animate);
+
+}
+
+/* RANDOM FIREWORKS */
+
+setInterval(() => {
+
+  if (Math.random() > .35) {
+
+    burst(
+      Math.random() * W,
+      Math.random() * H * .5
+    );
+
+  }
+
+}, 1900);
+
+animate();
+
+</script>
+
+</body>
+</html>
